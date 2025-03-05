@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scaper"
+version = "0.1.0"  # Replace with dynamic versioning if needed
+description = "A library for soundscape synthesis and augmentation"
+readme = "README.md"
+authors = [
+    { name = "Justin Salamon", email = "justin.salamon@gmail.com" },
+    { name = "Duncan MacConnell" }
+]
+license = { text = "BSD-3-Clause" }
+keywords = ["audio", "sound", "soundscape", "environmental", "dsp", "mixing"]
+requires-python = ">=3.7"
+
+dependencies = [
+    "sox==1.4.0",
+    "jams>=0.3.2",
+    "numpy>=1.21.0",
+    "soxbindings>=1.2.2; platform_system != 'Windows'",
+    "pyloudnorm",
+    "soundfile"
+]
+
+[project.optional-dependencies]
+docs = [
+    "sphinx",
+    "sphinx_rtd_theme",
+    "sphinx_issues"
+]
+tests = [
+    "pytest",
+    "pytest-cov",
+    "tqdm"
+]
+
+[project.urls]
+Homepage = "https://github.com/justinsalamon/scaper"
+Download = "https://github.com/justinsalamon/scaper/releases"
+Issues = "https://github.com/justinsalamon/scaper/issues"
+Documentation = "https://scaper.readthedocs.io/en/latest/"
+
+[project.scripts]
+scaper-cli = "scaper.core:main"  # Optional CLI if you have a main function.
+
+[tool.setuptools]
+packages = ["scaper"]
+
+[tool.setuptools.dynamic]
+version = { attr = "scaper.version.version" }

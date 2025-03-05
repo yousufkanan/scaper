@@ -1,11 +1,14 @@
 from setuptools import setup
-import imp
+import importlib
 
 
 with open('README.md') as file:
     long_description = file.read()
 
-version = imp.load_source('scaper.version', 'scaper/version.py')
+# version = importlib.load_source('scaper.version', 'scaper/version.py')
+spec = importlib.util.spec_from_file_location('scaper.version', 'scaper/version.py')
+version = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(version)
 
 setup(
     name='scaper',
